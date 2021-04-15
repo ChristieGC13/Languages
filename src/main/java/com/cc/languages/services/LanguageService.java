@@ -38,13 +38,7 @@ public class LanguageService {
 	}
 	
 	public void deleteLanguage(Long id) {
-		Optional<Language> optionalLanguage = langRepo.findById(id);
-		if(optionalLanguage.isPresent()) {
-			langRepo.deleteById(id);
-			return;
-		} else {
-			return;
-		}
+		langRepo.deleteById(id);
 	}
 	
 	

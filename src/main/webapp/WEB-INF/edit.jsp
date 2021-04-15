@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -20,13 +21,14 @@
 	<div class = "container mt-5">
 		<div class="d-flex justify-content-end">
 			<form action="/languages/${language.id}" method="post">
-    			<input type="hidden" name="_method" value="delete">
-    			<input type="submit" value="Delete">
-			</form>
+	    			<input type="hidden" name="_method" value="delete">
+	    			<input type="submit" value="Delete">
+					</form> 
 			<a href="/languages" class="ml-3">Back to Dashboard</a>
 		</div>
 		<h5>Edit Language</h5>
-    		<form:form action="/languages" method="post" modelAttribute="newLanguage">
+    		<form:form action="/languages/{id}/edit" method="post" modelAttribute="Language">
+    		<input type="hidden" name="_method" value="put">
 	      		<p>
 	      			<form:label path="name" class="form-label">Name</form:label>
 		      		<form:errors path="name" class="text-danger" />

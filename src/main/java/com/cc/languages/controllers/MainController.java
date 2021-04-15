@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cc.languages.models.Language;
@@ -63,7 +65,14 @@ public class MainController {
 	}
 	
 	@GetMapping("/languages/{id}/edit")
-	public String edit(@Valid @ModelAttribute("newLanguage") Language newLanguage,
+	public String edit(@ModelAttribute("Language") Language Language, Model model, @PathVariable("id") Long id) {
+		Language languages = langService.findLanguage(id);
+		model.addAttribute("language",languages);
+		return "edit.jsp";
+	}
+	
+	@RequestMapping(value="/languages/{id}/edit", method=RequestMethod.PUT)
+	public String edit(@Valid @ModelAttribute("Language") Language Language,
 			BindingResult result, Model model, @PathVariable("id") Long id) {
 		if (result.hasErrors()) {
 			Language languages = langService.findLanguage(id);
@@ -75,8 +84,9 @@ public class MainController {
 	}
 	
 	@DeleteMapping("/languages/{id}")
-	public void destroy(@PathVariable("id") Long id) {
+	public String destroy(@PathVariable("id") Long id) {
 		langService.deleteLanguage(id);
+		return "redirect:/languages";
 	}
 	
 

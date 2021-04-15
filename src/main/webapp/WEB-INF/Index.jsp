@@ -33,10 +33,11 @@
 					<td>${language.creator}</td>
 					<td>${language.currentVersion}</td>
 					<td> 
+						<a href="/languages/${language.id}/edit">Edit</a> |
 						<form action="/languages/${language.id}" method="post">
 		    			<input type="hidden" name="_method" value="delete">
 		    			<input type="submit" value="Delete">
-						</form> | <a href="/languages/${language.id}/edit">Edit</a>
+						</form>
 					</td>
 				</tr>
   			</c:forEach>
