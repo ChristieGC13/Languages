@@ -27,7 +27,7 @@
 			<a href="/languages" class="ml-3">Back to Dashboard</a>
 		</div>
 		<h5>Edit Language</h5>
-    		<form:form action="/languages/{id}/edit" method="post" modelAttribute="Language">
+    		<form:form action="/languages/${language.id}/edit" method="post" modelAttribute="Language">
     		<input type="hidden" name="_method" value="put">
 	      		<p>
 	      			<form:label path="name" class="form-label">Name</form:label>
